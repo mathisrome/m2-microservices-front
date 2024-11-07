@@ -61,6 +61,34 @@ const takeCharge = async (deliveryId: number, uuid: any) => {
   }
 };
 
+const delivered = async (deliveryId: number) => {
+  try {
+    const response = await fetch(`http://localhost:80/api/delivery/1.0/deliveries/${deliveryId}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + localStorage.getItem('token')
+      },
+      body: JSON.stringify({ 
+        status: 'delivered',
+        id: deliveryId
+    })
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to update delivery');
+    }
+
+    // Update status locally
+    const deliveryIndex = deliveries.value.findIndex(delivery => delivery.id === deliveryId);
+    if (deliveryIndex !== -1) {
+      deliveries.value[deliveryIndex].status = 'delivered';
+    }
+
+  } catch (error) {
+    console.error('Error taking charge of delivery:', error);
+  }
+};
 
 onMounted(() => {
   fetchDeliveries();
@@ -103,15 +131,25 @@ onMounted(() => {
             </Column>
             <Column header="Actions">
                 <template #body="slotProps">
+                    <!-- Premier if : si le livreur est null -->
                     <div v-if="slotProps.data.deliverer === null">
-                        <Button @click="takeCharge(slotProps.data.id, slotProps.data.user.uuid)">
+                      <Button @click="takeCharge(slotProps.data.id, slotProps.data.user.uuid)">
                         Prendre en charge la commande
-                        </Button>
+                      </Button>
                     </div>
+
+                    <!-- else-if : si le statut est 'in_delivery' -->
+                    <div v-else-if="slotProps.data.status === 'in_delivery'">
+                      <Button @click="delivered(slotProps.data.id)">
+                        Livrée ?
+                      </Button>
+                    </div>
+
+                    <!-- else : Terminée -->
                     <div v-else>
-                        Pris en charge
+                      <span>Commande livrée</span>
                     </div>
-                    </template>
+                </template>
             </Column>
         </DataTable>
     </div>
