@@ -51,10 +51,11 @@ const takeCharge = async (deliveryId: number, uuid: any) => {
       throw new Error('Failed to update delivery');
     }
 
-    // Mettre à jour le champ 'deliverer' localement pour rafraîchir l'affichage
+    // Mettre à jour le champ 'deliverer' et changer le statut en 'in_delivery' localement
     const deliveryIndex = deliveries.value.findIndex(delivery => delivery.id === deliveryId);
     if (deliveryIndex !== -1) {
       deliveries.value[deliveryIndex].deliverer = userId.value;
+      deliveries.value[deliveryIndex].status = 'in_delivery';  // Change le statut à 'in_delivery'
     }
   } catch (error) {
     console.error('Error taking charge of delivery:', error);
@@ -79,14 +80,14 @@ const delivered = async (deliveryId: number) => {
       throw new Error('Failed to update delivery');
     }
 
-    // Update status locally
+    // Changer le statut à 'delivered' localement
     const deliveryIndex = deliveries.value.findIndex(delivery => delivery.id === deliveryId);
     if (deliveryIndex !== -1) {
       deliveries.value[deliveryIndex].status = 'delivered';
     }
 
   } catch (error) {
-    console.error('Error taking charge of delivery:', error);
+    console.error('Error updating delivery status to delivered:', error);
   }
 };
 
@@ -130,27 +131,27 @@ onMounted(() => {
                 </template>
             </Column>
             <Column header="Actions">
-                <template #body="slotProps">
-                    <!-- Premier if : si le livreur est null -->
-                    <div v-if="slotProps.data.deliverer === null">
+              <template #body="slotProps">
+                  <!-- Si le statut est 'ready' et le livreur est 'null', afficher le bouton "Prendre en charge" -->
+                  <div v-if="slotProps.data.status === 'ready' && slotProps.data.deliverer === null">
                       <Button @click="takeCharge(slotProps.data.id, slotProps.data.user.uuid)">
-                        Prendre en charge la commande
+                          Prendre en charge la commande
                       </Button>
-                    </div>
+                  </div>
 
-                    <!-- else-if : si le statut est 'in_delivery' -->
-                    <div v-else-if="slotProps.data.status === 'in_delivery'">
+                  <!-- Si le statut est 'in_delivery', afficher le bouton "Livrée ?" -->
+                  <div v-else-if="slotProps.data.status === 'in_delivery'">
                       <Button @click="delivered(slotProps.data.id)">
-                        Livrée ?
+                          Livrée ?
                       </Button>
-                    </div>
+                  </div>
 
-                    <!-- else : Terminée -->
-                    <div v-else>
+                  <!-- Si le statut n'est pas 'ready' ou 'in_delivery', afficher "Commande livrée" -->
+                  <div v-else>
                       <span>Commande livrée</span>
-                    </div>
-                </template>
-            </Column>
+                  </div>
+              </template>
+          </Column>
         </DataTable>
     </div>
 
