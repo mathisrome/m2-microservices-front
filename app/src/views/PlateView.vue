@@ -258,6 +258,13 @@ const confirmDeletePlate = async (id: number) => {
     deleteProductDialog.value = true;
 };
 
+const getPlateTypeName = (code: number) => {
+    // Trouve le type de plat correspondant au code
+    const plateType = plateTypes.value.find(pt => pt.code === code);
+    return plateType ? plateType.name : 'Inconnu';  // Si aucun type trouvé, retourner "Inconnu"
+};
+
+
 onMounted(() => {
   getAllPlates()
 })
@@ -285,7 +292,11 @@ onMounted(() => {
                 <Column field="name" header="Nom" sortable style="min-width: 16rem"></Column>
                 <Column field="price" header="Prix" sortable style="min-width: 8rem">
                 </Column>
-                <Column field="plateType" header="Type" sortable style="min-width: 10rem"></Column>
+                <Column header="Type" sortable style="min-width: 10rem">
+                    <template #body="slotProps">
+                        <span>{{ getPlateTypeName(slotProps.data.plateType) }}</span>
+                    </template>
+                </Column>
                 <Column :exportable="false" style="min-width: 12rem">
                     <template #body="slotProps">
                         <Button icon="pi pi-pencil" outlined rounded class="mr-2" @click="editPlate(slotProps.data)" />
