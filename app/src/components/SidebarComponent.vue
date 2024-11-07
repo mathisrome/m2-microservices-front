@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import {ref} from "vue";
 import {useRouter} from "vue-router";
+import imageSrc from '../assets/image.png';
 
 const showLinks = ref(true)
 window.onresize = () => {
@@ -75,8 +76,9 @@ const structuralItems = ref([
 <template>
   <aside>
     <section>
-      <RouterLink to="">
-        <Image src="/axignis.png" width="150"/>
+      <RouterLink to="" class="flex flex-row align-items-center gap-4">
+        <Image :src=imageSrc width="50"/>
+          <p class="marque">Öber</p>
       </RouterLink>
       <Button icon="pi pi-bars" @click="showLinks = !showLinks" aria-label="Display navbar"/>
     </section>
@@ -137,5 +139,15 @@ const structuralItems = ref([
 
 .v-leave-to {
   height: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+.marque {
+  color: #28a745;
+  font-size: 20px;
+  font-weight: 600;
 }
 </style>
