@@ -31,7 +31,7 @@ const createPlate = async (plateData: any) => {
     try {
         console.log("Objet envoyé :", plateData);
 
-        const response = await fetch('http://localhost:84/api/kitchen/1.0/plates', {
+        const response = await fetch('http://localhost:80/api/kitchen/1.0/plates', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -72,7 +72,7 @@ const createPlate = async (plateData: any) => {
 const updatePlateFetch = async (plateData: any) => {
     loading.value = true;
     try {
-        const response = await fetch(`http://localhost:84/api/kitchen/1.0/plates/${editingPlate.value.id}`, {
+        const response = await fetch(`http://localhost:80/api/kitchen/1.0/plates/${editingPlate.value.id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -108,7 +108,7 @@ const updatePlateFetch = async (plateData: any) => {
 const getAllPlates = async () => {
     loading.value = true;
     try {
-        const response = await fetch('http://localhost:84/api/kitchen/1.0/plates', {
+        const response = await fetch('http://localhost:80/api/kitchen/1.0/plates', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -135,7 +135,7 @@ const getAllPlates = async () => {
 
 const deletePlate = async (id: number) => {
     try {
-        const response = await fetch(`http://localhost:84/api/kitchen/1.0/plates/${id}`, {
+        const response = await fetch(`http://localhost:80/api/kitchen/1.0/plates/${id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',

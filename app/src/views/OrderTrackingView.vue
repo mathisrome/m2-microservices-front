@@ -6,7 +6,7 @@ const authStore = useAuthStore()
 const user = computed(() => authStore.user)
 const orders = ref([]);
 const sendOrder = async () => {
-  const response = await fetch('http://localhost:84/api/order/1.0/orders?user=' + user.value.uuid, {
+  const response = await fetch('http://localhost:80/api/order/1.0/orders?user=' + user.value.uuid, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

@@ -10,7 +10,7 @@ export const usePlateStore = defineStore('plate', () => {
         plates.value = []
     
         return await fetch(
-            "http://localhost:84/api/kitchen/1.0/plates",
+            "http://localhost:80/api/kitchen/1.0/plates",
             {
                 headers: {Authorization: 'Bearer ' + localStorage.getItem("token")},
             }

@@ -9,7 +9,7 @@ const fetchOrders = async () => {
   console.log(localStorage.getItem('token'));
 
     try {
-        const response = await fetch('http://localhost:84/api/kitchen/1.0/orders', {
+        const response = await fetch('http://localhost:80/api/kitchen/1.0/orders', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -38,7 +38,7 @@ const fetchOrders = async () => {
 
 const updatePlateStatus = async (orderId, plateId, status) => {
   try {
-    const response = await fetch('http://localhost:84/api/kitchen/1.0/orders/' + orderId + '/plates/' + plateId, {
+    const response = await fetch('http://localhost:80/api/kitchen/1.0/orders/' + orderId + '/plates/' + plateId, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',

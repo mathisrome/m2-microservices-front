@@ -66,7 +66,7 @@ const sendOrder = async (addressData: any) => {
     };
     console.log("Objet envoyé :", orderData)
 
-    const response = await fetch('http://localhost:84/api/order/1.0/orders', {
+    const response = await fetch('http://localhost:80/api/order/1.0/orders', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

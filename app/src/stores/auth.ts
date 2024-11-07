@@ -10,7 +10,7 @@ export const useAuthStore = defineStore('auth', () => {
         user.value = null
 
         return await fetch(
-            "http://localhost:84/api/customer/1.0/users/" + uuid,
+            "http://localhost:80/api/customer/1.0/users/" + uuid,
             {
                 headers: {Authorization: 'Bearer ' + localStorage.getItem("token")},
             }
@@ -34,7 +34,7 @@ export const useAuthStore = defineStore('auth', () => {
         password: string | undefined
     ) {
         return await fetch(
-            "http://localhost:84/api/login",
+            "http://localhost:80/api/login",
             {
                 method: "POST",
                 headers: new Headers({'content-type': 'application/json'}),

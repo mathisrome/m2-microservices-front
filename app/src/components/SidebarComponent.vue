@@ -98,6 +98,7 @@ const structuralItems = ref([
           <RouterLink to="/plate">
             <i class="pi pi-palette"></i>
             <span class="ml-2">Plats</span>
+          </RouterLink>
         </li>
         <li>
           <RouterLink to="/kitchen">
