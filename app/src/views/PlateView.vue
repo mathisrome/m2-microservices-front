@@ -295,19 +295,19 @@ onMounted(() => {
             </DataTable>
     </div>
 
-    <Dialog v-model:visible="plateDialog" :style="{ width: '450px' }" header="Détails du plat" :modal="true">
-            <div class="flex flex-col gap-6">
-                <div>
+    <Dialog v-model:visible="plateDialog" :style="{ width: '450px' }" header="Ajouter un plat" :modal="true">
+            <div>
+                <div class="my-2">
                     <label for="name" class="block font-bold mb-3">Nom</label>
                     <InputText id="name" v-model.trim="editingPlate.name" required="true" autofocus :invalid="submitted && !editingPlate.name" fluid />
                     <small v-if="submitted && !editingPlate.name" class="text-red-500">Name is required.</small>
                 </div>
-                <div>
+                <div class="my-2">
                     <label for="plateType" class="block font-bold mb-3">Type de plat</label>
                     <Select id="plateType" v-model="editingPlate.plate_type" :options="plateTypes" optionLabel="name" placeholder="Sélectionner un type" fluid></Select>
                 </div>
 
-                <div class="grid grid-cols-12 gap-4">
+                <div class="my-2">
                     <div class="col-span-6">
                         <label for="price" class="block font-bold mb-3">Prix</label>
                         <InputNumber id="price" v-model="editingPlate.price" mode="currency" currency="EUR" locale="fr-FR" fluid />
@@ -321,19 +321,19 @@ onMounted(() => {
             </template>
         </Dialog>
 
-        <Dialog v-model:visible="plateDialogEdit" :style="{ width: '450px' }" header="Détails du plat" :modal="true">
-            <div class="flex flex-col gap-6">
-                <div>
+        <Dialog v-model:visible="plateDialogEdit" :style="{ width: '450px' }" header="Modifier le plat" :modal="true">
+            <div>
+                <div class="my-4">
                     <label for="name" class="block font-bold mb-3">Nom</label>
                     <InputText id="name" v-model.trim="editingPlate.name" required="true" autofocus :invalid="submitted && !editingPlate.name" fluid />
                     <small v-if="submitted && !editingPlate.name" class="text-red-500">Name is required.</small>
                 </div>
-                <div>
+                <div class="my-4">
                     <label for="plateType" class="block font-bold mb-3">Type de plat</label>
                     <Select id="plateType" v-model="editingPlate.plate_type" :options="plateTypes" optionLabel="name" placeholder="Sélectionner un type" fluid></Select>
                 </div>
 
-                <div class="grid grid-cols-12 gap-4">
+                <div class="my-4">
                     <div class="col-span-6">
                         <label for="price" class="block font-bold mb-3">Prix</label>
                         <InputNumber id="price" v-model="editingPlate.price" mode="currency" currency="EUR" locale="fr-FR" fluid />

@@ -8,6 +8,7 @@ import {jwtDecode} from "jwt-decode";
 import KitchenView from "@/views/KitchenView.vue";
 import OrderTrackingView from '@/views/OrderTrackingView.vue';
 import PlateView from '@/views/PlateView.vue';
+import DeliveryView from '@/views/DeliveryView.vue';
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -41,6 +42,11 @@ const router = createRouter({
             path: '/kitchen',
             name: 'kitchen',
             component: KitchenView
+        },
+        {
+            path: '/delivery',
+            name: 'delivery',
+            component: DeliveryView
         },
     ]
 })

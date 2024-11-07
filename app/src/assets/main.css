@@ -97,17 +97,3 @@ body {
         }
     }
 }
-
-.p-inputtext {
-    background-color: white !important;
-    color: #000 !important;
-    transition: none !important;
-}
-
-label, h1 {
-    color: #000;
-}
-
-.p-button-label {
-    color: white;
-}

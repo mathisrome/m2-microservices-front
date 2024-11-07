@@ -62,7 +62,7 @@ onMounted(() => {
 
 <template>
   <div class="card">
-    <h1>Tableau de Bord de la Cuisine</h1>
+    <h1 class="mb-3">Tableau de bord de la Cuisine</h1>
     <div v-if="loading" class="loading">
       <ProgressSpinner/>
     </div>

@@ -316,7 +316,7 @@ import InputText from 'primevue/inputtext';
 
 <template>
     <div v-if="isVisible" class="modal-overlay">
-      <div class="modal">
+      <div class="modal flex align-items-center flex-wrap flex-column">
         <div class="modal-header">
             <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle">
                 <path d="M9 12l2 2 4-4"></path>
@@ -326,14 +326,16 @@ import InputText from 'primevue/inputtext';
         </div>
         <p>{{ message }}</p>
         <div>
-          <div class="card flex justify-center">
+          <div class="card flex justify-content-center align-items-center w-full">
             
-            <Form v-slot="$form" :initialValues :resolver @submit="onFormSubmit" class="flex flex-col gap-4 w-full sm:w-56">
-              <InputText v-model="initialValues.address" name="address" type="text" placeholder="Adresse" fluid />
-              <InputText v-model="initialValues.city" name="city" type="text" placeholder="Ville" fluid />
-              <AutoComplete v-model="selectedCountry" optionLabel="name" :suggestions="filteredCountries" @complete="search" placeholder="Pays" @update:modelValue="updateCountry"/>
-              <InputText v-model="initialValues.postalCode" name="postalCode" type="text" placeholder="Code postal" fluid />
-              <Button type="submit" severity="secondary" label="Valider" />
+            <Form v-slot="$form" :initialValues :resolver @submit="onFormSubmit" class="flex flex-column align-items-center w-full max-w-30rem">
+              <InputText v-model="initialValues.address" name="address" type="text" placeholder="Adresse" fluid class="w-full mb-3"/>
+              <InputText v-model="initialValues.city" name="city" type="text" placeholder="Ville" fluid class="w-full mb-3"/>
+              <AutoComplete v-model="selectedCountry" optionLabel="name" :suggestions="filteredCountries" @complete="search" placeholder="Pays" @update:modelValue="updateCountry" class="w-full mb-3"/>
+              <InputText v-model="initialValues.postalCode" name="postalCode" type="text" placeholder="Code postal" fluid class="w-full mb-3"/>
+              <div class="flex justify-content-center w-full">
+                <Button type="submit" severity="secondary" label="Valider" />
+              </div>
         </Form>
     </div>
         </div>
